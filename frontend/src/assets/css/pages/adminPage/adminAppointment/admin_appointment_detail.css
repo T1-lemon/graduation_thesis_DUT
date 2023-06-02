@@ -1,0 +1,75 @@
+.admin__apptdetail--container {
+  padding: 0 15px;
+}
+
+.apptdetail__grid--container {
+  border-bottom: 1px solid var(--color-text);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.apptdetail__grid--last {
+  border: none;
+  padding: 0;
+}
+
+.admin__apptdetail--bodyleft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin__apptdetail--bodyleft .bodyleft__p {
+  margin-top: 10px;
+}
+
+.admin__apptdetail--header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 0;
+}
+
+.admin__apptdetail--header p {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.admin__apptdetail--bodyright .bodyright__p {
+  text-transform: capitalize;
+  width: 160px;
+  color: var(--color-text);
+}
+
+.admin__apptdetail--bodyright .bodyright__div {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.admin__apptdetail--bodyright .bodyright__span--status {
+  margin-right: 6px;
+}
+
+.admin__apptdetail--bodyright .bodyright__div--status {
+  display: flex;
+  align-items: center;
+}
+
+/*scroll*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+

@@ -1,0 +1,229 @@
+.container__schedule {
+  background: #fff;
+  border: 1px solid var(--primary-color-border);
+  border-radius: 10px;
+}
+
+.container__schedule .container__title {
+  padding: 30px 40px;
+}
+
+.container__schedule .container__title h3 {
+  font-size: 26px;
+}
+
+.container__schedule .schedule__widget {
+  margin: 0 40px;
+  border: 1px solid var(--primary-color-border);
+  margin-bottom: 40px;
+  border-radius: 10px;
+}
+
+.container__schedule .schedule__widget .schedule__header {
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--primary-color-border);
+}
+
+.container__schedule
+  .schedule__widget
+  .schedule__header
+  .tab__list
+  .tab__header-item {
+  border: 1px solid var(--primary-color-border);
+  border-radius: 4px;
+  margin: 5px 15px 5px 0;
+  padding: 10px 15px;
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  min-height: 0px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.container__schedule
+  .schedule__widget
+  .schedule__header
+  .tab__list
+  .tab__header-item.Mui-selected {
+  color: #fff;
+  background-color: var(--secondary-color);
+}
+
+.container__schedule
+  .schedule__widget
+  .schedule__header
+  .tab__list
+  .tab__header-item:hover {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: #fff;
+}
+
+.container__schedule .schedule__widget .tab__content-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0px 24px;
+}
+
+.container__schedule .schedule__widget .tab__content-times {
+  padding: 24px;
+}
+
+.container__schedule .schedule__widget .tab__content-times .time__slot-item {
+  display: inline-flex;
+  align-items: center;
+  background-color: #199c7d;
+  border: 1px solid #199c7d;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  margin: 10px 10px 0 0;
+  padding: 6px 15px;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item
+  .cursor__noDrop {
+  cursor: not-allowed;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item.appointment {
+  background-color: var(--color-text);
+  border: 1px solid #808080;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item.appointment:hover {
+  background-color: var(--color-text);
+  cursor: default;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item
+  .delete__time-icon {
+  color: #8bdbc8;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item:hover {
+  background-color: #248f76;
+  cursor: pointer;
+}
+
+.container__schedule
+  .schedule__widget
+  .tab__content-times
+  .time__slot-item
+  .delete__time-icon:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+/* modal schedule */
+
+.btn__add__time {
+  display: table;
+  align-items: center;
+  color: var(--color-button);
+  cursor: pointer;
+}
+
+.btn__add__time span {
+  display: flex;
+  align-items: center;
+}
+
+.btn__add__time:hover {
+  color: var(--color-button-hover);
+}
+
+.container__modal-schedule {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  width: 36%;
+  outline: none;
+  overflow: hidden;
+}
+
+.container__modal-schedule .modal__header {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 20px;
+}
+
+.container__modal-schedule .icon__close {
+  color: #fff;
+}
+
+.container__modal-schedule .modal__body {
+  padding: 20px;
+}
+
+.container__modal-schedule .modal__body .container__select__time .form__row {
+  display: flex;
+  align-items: center;
+}
+
+.container__modal-schedule .modal__body .container__select__time {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.container__modal-schedule .form__row .form__group {
+  margin-bottom: 20px;
+  margin-right: 20px;
+  width: 40%;
+}
+
+.container__modal-schedule .form__row label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.container__modal-schedule .form__row .form__select {
+  color: #000;
+  font-size: 14px;
+  padding: 6px 15px;
+  border-radius: 4px;
+  border: 2px solid #c2d6f3;
+  width: 100%;
+}
+
+.container__modal-schedule .form__row .form__select:disabled {
+  border: 2px solid #666666;
+  background: #bdbdbd;
+}
+
+.container__modal-schedule .modal__body .btn__save {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 30px;
+}
+
+.container__modal-schedule .modal__body .error__select {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: red;
+}

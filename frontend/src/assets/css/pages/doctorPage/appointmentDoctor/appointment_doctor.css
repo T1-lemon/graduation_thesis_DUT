@@ -1,0 +1,158 @@
+.appointment__doctor__list {
+  background: #fff;
+  border: 1px solid var(--primary-color-border);
+  border-radius: 10px;
+}
+
+.appointment__doctor__list .container__title {
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment__doctor__list .container__title h3 {
+  font-size: 26px;
+}
+
+.appointment__doctor__list .container__title .select__status {
+  border-radius: 30px;
+  padding: 6px 0px;
+}
+
+.container__title #status__label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.appointment__doctor__list
+  .container__title
+  .select__status
+  .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.select__item.Mui-selected {
+  font-weight: 600;
+}
+
+.appointment__list .appointment__item {
+  padding: 16px 40px 13px 40px;
+  border-top: 1px solid var(--primary-color-border);
+}
+
+.appointment__list .appointment__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment__list .appointment__item .profile__infor {
+  display: flex;
+  align-items: center;
+}
+
+.appointment__list .appointment__item .profile__infor .avatar__patient {
+  width: 120px;
+  height: 120px;
+}
+
+.appointment__list .appointment__item .profile__infor .avatar__patient img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgb(0 24 73 / 20%);
+  object-fit: cover;
+}
+
+.appointment__list .appointment__item .profile__infor .infor__patient {
+  margin-left: 40px;
+}
+
+.appointment__list .appointment__item .profile__infor .infor__patient a {
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #000;
+}
+
+.appointment__list .appointment__item .profile__infor .infor__patient a:hover {
+  color: var(--primary-color);
+}
+
+.appointment__list .appointment__item .profile__infor .infor__patient h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.appointment__list
+  .appointment__item
+  .profile__infor
+  .infor__patient
+  .infor__list
+  li {
+  font-size: 15px;
+  line-height: 26px;
+  color: #727272;
+  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.appointment__list
+  .appointment__item
+  .profile__infor
+  .infor__patient
+  .infor__list
+  li
+  .icon__infor {
+  margin-right: 15px;
+  color: #c7c7c7;
+  font-size: 16px;
+}
+.appointment__item .appointment__action .btn {
+  border-radius: 20px;
+}
+
+.appointment__item .appointment__action .btn.accept {
+  color: #39cabb;
+  background: #e9f9f7;
+  margin-right: 12px;
+}
+
+.appointment__item .appointment__action .btn.cancel {
+  color: #fe5948;
+  background: #ffeeec;
+}
+
+.appointment__item .appointment__action .text__status {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.appointment__item .appointment__action .text__status.approved {
+  background-color: rgba(15, 183, 107, 0.12);
+  color: #26af48;
+}
+
+.appointment__item .appointment__action .text__status.cancelled {
+  background-color: rgba(242, 17, 54, 0.12);
+  color: #e63c3c;
+}
+
+.container__appointment .pagnination__appointment {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.container__appointment
+  .pagnination__appointment
+  .pagination
+  > ul
+  > li
+  .Mui-selected {
+  background-color: var(--color-button-hover);
+  color: #fff;
+}

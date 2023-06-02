@@ -1,0 +1,177 @@
+.container__detail__examination {
+  margin-top: 75px;
+}
+
+.container__detail__examination .container__information {
+  padding: 80px 80px 120px 80px;
+  background-color: var(--background-color);
+  min-height: calc(100vh - 75px);
+}
+
+.container__short__information {
+  display: flex;
+  align-items: center;
+  padding: 34px 40px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.container__image__doctor {
+  width: 200px;
+  height: 186px;
+}
+
+.container__image__doctor > .img__doctor {
+  width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgb(0 24 73 / 20%);
+}
+
+.brief__information > h1 {
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: var(--color-title);
+}
+
+.brief__information {
+  margin-left: 40px;
+}
+
+.brief__text {
+  color: var(--color-text);
+  font-size: var(--font-size-text);
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+.brief__text p {
+  margin-bottom: 4px;
+}
+
+.brief__information .department {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.brief__information .department img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.container__schedule {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.container__schedule .title__box {
+  background-color: var(--color-button-hover);
+  padding: 20px 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
+}
+
+.box__schedule {
+  border-bottom: 1px solid var(--color-border);
+  padding: 20px 30px;
+}
+
+.container__schedule .schedule__select {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  outline: none;
+  font-size: var(--font-size-text);
+  color: var(--color-title);
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.container__schedule .container__schedule--package {
+  padding: 10px 0px;
+}
+
+.container__schedule .container__schedule--package .container__schedule--icon {
+  display: flex;
+  align-items: center;
+}
+
+.container__schedule--package .container__schedule__time {
+  margin-top: 20px;
+}
+
+.container__schedule--package .container__schedule__time > a {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.container__schedule--package .container__schedule__time .schedule__time--item {
+  text-decoration: none;
+  font-weight: bolder;
+  color: #000;
+  display: inline-block;
+  padding: 6px 4px;
+  background: #eee;
+  border-radius: 3px;
+}
+
+.container__schedule--package
+  .container__schedule__time
+  .schedule__time--item:hover {
+  box-shadow: 0px 0px 0px 2px var(--color-title) inset;
+  text-decoration: none;
+}
+
+.container__schedule .examination__price {
+  padding: 20px 30px;
+}
+
+.container__schedule .examination__price .value__price {
+  float: right;
+}
+
+.container__schedule .examination__price div {
+  margin-bottom: 10px;
+}
+
+.container__detail__information {
+  margin-top: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.container__detail__information .tab__list__btn button.Mui-selected,
+.container__detail__information .tab__list__btn button:hover {
+  color: var(--primary-color);
+}
+
+.container__detail__information .tab__content--item h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-title);
+}
+
+.container__detail__information .tab__content--item li {
+  position: relative;
+  line-height: 28px;
+  padding-left: 25px;
+  margin-bottom: 6px;
+}
+
+.container__detail__information .tab__content--item li::before {
+  position: absolute;
+  content: '';
+  border: 3px solid #dad9e7;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  left: 0px;
+  top: 7px;
+}

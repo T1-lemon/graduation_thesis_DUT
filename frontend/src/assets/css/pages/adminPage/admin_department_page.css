@@ -1,0 +1,108 @@
+.department__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.department__body {
+  margin-top: 30px;
+}
+
+.department__group--name {
+  display: flex;
+  align-items: center;
+}
+
+.department__name {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.div__group--action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*Group button deparment action*/
+.div__group--action .btn__group--action {
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 0;
+  min-width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}
+
+.div__group--action .btn__group--action:hover {
+  background-color: rgba(17, 25, 39, 0.12);
+}
+
+.div__group--action .MuiButton-startIcon {
+  margin: 0;
+}
+
+.div__group--action .MuiButton-startIcon .MuiSvgIcon-root {
+  font-size: 24px;
+  color: rgb(108, 115, 127);
+}
+
+.div__group--action .btn__edit {
+  margin-right: 10px;
+}
+
+.div__group--action .btn__delete {
+  margin-right: 10px;
+}
+
+/*add department*/
+.department__form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px 15px 15px;
+  border-bottom: 1px solid rgb(216 216 216);
+}
+
+.department__form .input__div--name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.department__form .input__div--img {
+  margin-top: 10px;
+}
+
+.department__form .input__p--title {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.department__form .input__p--error {
+  color: var(--color-text-error);
+  font-size: 13px;
+  width: 80%;
+  margin-top: 10px;
+}
+
+.department__form .input__div--error {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.department__form--label {
+  font-size: 15px;
+}
+
+.department__input {
+  width: 255px;
+  height: 26px;
+  border-radius: 10px;
+}
+
+.department__div--btn {
+  padding: 0 15px;
+}
+

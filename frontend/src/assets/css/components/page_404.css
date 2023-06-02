@@ -1,0 +1,51 @@
+.box__404 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  padding: 100px;
+}
+
+.box__404--text {
+  color: var(--color-title);
+  font-weight: 600;
+}
+
+.text--404 {
+  font-size: 50px;
+}
+
+.text--title {
+  margin-top: 10px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text--title span {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.text--notfound {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.text--notfound span {
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.box__404--img {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.robot__404--img {
+  width: 90%;
+}

@@ -1,0 +1,115 @@
+.container__patient--doctor .card.widget__profile-paient {
+  border: 1px solid var(--color-border);
+  padding: 24px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.container__patient--doctor .card.widget__profile-paient .card__header {
+  padding-bottom: 20px;
+  border-right: 1px solid var(--color-border);
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+}
+
+.container__patient--doctor .card.widget__profile-paient .card__body {
+  padding: 0px 20px;
+  flex: 1;
+}
+
+.container__patient--doctor
+  .card.widget__profile-paient
+  .card__header
+  .profile__info-widget
+  img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.container__patient--doctor .card.widget__profile-paient .card__body ul li {
+  display: flex;
+}
+
+.container__patient--doctor .card.widget__profile-paient .card__body ul li {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.container__patient--doctor
+  .card.widget__profile-paient
+  .card__body
+  ul
+  li
+  .title__information {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--primary-dark-color);
+  width: 16%;
+}
+
+.container__patient--doctor
+  .card.widget__profile-paient
+  .card__body
+  ul
+  li
+  .value {
+  color: #757575;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.container__patient--doctor .table__appointment .container__table__appointment {
+  height: 80vh;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 14px;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .text__status {
+  padding: 5px 10px;
+  border-radius: 18px;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .pending {
+  background-color: rgba(255, 152, 0, 0.12);
+  color: #f39c12;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .approved {
+  background-color: rgba(15, 183, 107, 0.12);
+  color: #26af48;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .cancel {
+  background-color: rgba(242, 17, 54, 0.12);
+  color: #e63c3c;
+}

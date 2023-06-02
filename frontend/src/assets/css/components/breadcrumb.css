@@ -1,0 +1,28 @@
+.breadcumbs > * {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.breadcumbs .crumb:after {
+  content: '>';
+  margin-left: 10px;
+}
+
+.breadcumbs .crumb:last-child:after {
+  display: none;
+}
+
+.breadcumbs .crumb:last-child a:hover {
+  text-decoration: none;
+}
+
+.breadcumbs .crumb a {
+  color: #fff;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.breadcumbs .crumb a:hover {
+  text-decoration: underline;
+}

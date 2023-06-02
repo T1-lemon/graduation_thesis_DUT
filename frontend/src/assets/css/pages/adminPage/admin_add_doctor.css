@@ -1,0 +1,65 @@
+.doctor__add--body .div__group--action {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.doctor__add--body .doctor__add--basic {
+  margin-top: 20px;
+}
+
+.doctor__add--body .doctor__add--des {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.doctor__add--body .doctor__add--des p {
+  font-size: 15px;
+}
+
+.doctor__add--body .doctor__add--btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doctor__add--body .doctor__add--success {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.doctor__add--body .doctor__add--success {
+    height: calc(100vh - 268px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.doctor__add--body .img--success {
+    max-width: 115px;
+    margin-top: 35px;
+}
+
+.doctor__add--body .p--success {
+    margin: 23px 0px 0px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.doctor__add--success .group__div--btn {
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+.doctor__add--stepper .lable__failed .MuiStepConnector-root .MuiStepConnector-line {
+  border-color: red;
+}

@@ -1,0 +1,46 @@
+services:
+  mysql-springboot-container:
+    image: mysql:8.0.32
+    container_name: mysql-springboot-container
+    ports:
+      - 3310:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - mysql-config-deamond:/etc/mysql/conf.d
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: hospitalCareDB
+  springboot-docker-container:
+    image: lemonit11/springboot-docker:v1.0.0
+    container_name: springboot-docker-container
+    ports:
+      - 8083:8083
+    networks:
+      - backend
+    expose:
+      - 8083
+  python-flask-container:
+    image: lemonit11/python-flask-app:v1.0.0
+    container_name: python-flask-container
+    ports:
+      - 5000:5000
+    networks:
+      - backend
+    expose:
+      - 5000
+  nginx:
+    image: lemonit11/nginx-docker:v1.0.0
+    ports:
+      - 80:80
+    networks:
+      - backend
+#create network
+networks:
+  backend:
+    name: springboot-app-network
+
+volumes:
+  mysql-data:
+  mysql-config-deamond:
