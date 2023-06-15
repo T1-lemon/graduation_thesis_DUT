@@ -1,7 +1,5 @@
-import {
-  MenuSettingsInteface,
-  PagesInteface
-} from '../interface/HeaderInterface'
+import { MenuSettingsInteface, PagesInteface } from '../interface/HeaderInterface';
+
 
 export const pages: PagesInteface[] = [
   {
@@ -11,6 +9,10 @@ export const pages: PagesInteface[] = [
   {
     pageName: 'Find a Doctor',
     link: '/search-doctor'
+  },
+  {
+    pageName: 'Message',
+    link: '/patient/message'
   }
 ]
 

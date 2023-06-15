@@ -8,7 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,5 +29,14 @@ public class ConversationController {
     UserDTO sender = userResponse.getUser();
 
     return conversationService.getAllConversationOfSender(sender.getId());
+  }
+
+  @PostMapping(value = "")
+  @PreAuthorize("hasAnyAuthority('ROLE_DOCTOR', 'ROLE_PATIENT')")
+  public ConversationDTO addConversation(@RequestParam(value = "receiverId") Long receiverId) {
+    UserResponse userResponse = userService.getCurrentUser();
+    UserDTO sender = userResponse.getUser();
+
+    return conversationService.addConversation(sender.getId(), receiverId);
   }
 }

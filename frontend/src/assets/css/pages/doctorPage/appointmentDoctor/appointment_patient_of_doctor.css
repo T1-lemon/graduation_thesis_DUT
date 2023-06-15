@@ -113,3 +113,27 @@
   background-color: rgba(242, 17, 54, 0.12);
   color: #e63c3c;
 }
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .btn {
+  border-radius: 20px;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .btn.accept {
+  color: #39cabb;
+  background: #e9f9f7;
+  margin-right: 12px;
+}
+
+.container__patient--doctor
+  .table__appointment
+  .container__table__appointment
+  .btn.cancel {
+  color: #fe5948;
+  background: #ffeeec;
+}

@@ -1,32 +1,43 @@
-import AccessTimeFilledOutlinedIcon from '@mui/icons-material/AccessTimeFilledOutlined';
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Button } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Pagination from '@mui/material/Pagination';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Stack from '@mui/material/Stack';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import AccessTimeFilledOutlinedIcon from '@mui/icons-material/AccessTimeFilledOutlined'
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import EmailIcon from '@mui/icons-material/Email'
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import { Button } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Pagination from '@mui/material/Pagination'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import Stack from '@mui/material/Stack'
+import React, { useContext, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-
-
-import '../../../assets/css/pages/doctorPage/appointmentDoctor/appointment_doctor.css';
-import { IAppointmentPageable } from '../../../interface/AppointmentInterface';
-import { DispatchType, RootState } from '../../../redux/configStore';
-import { useAppSelector } from '../../../redux/hooks';
-import { changeStatusAppointmentThunk, getAllAppointmentDoctorPageableThunk } from '../../../redux/slices/appointmentSlice';
-import { formatDate } from '../../../utils/date';
-import { StatusAppointment } from '../../../utils/statusAppointment';
-import SketonItem from './SketonItem';
-
+import '../../../assets/css/pages/doctorPage/appointmentDoctor/appointment_doctor.css'
+import {
+  IAppointment,
+  IAppointmentPageable
+} from '../../../interface/AppointmentInterface'
+import { DispatchType, RootState } from '../../../redux/configStore'
+import { useAppSelector } from '../../../redux/hooks'
+import {
+  changeStatusAppointmentThunk,
+  getAllAppointmentDoctorPageableThunk
+} from '../../../redux/slices/appointmentSlice'
+import {
+  getNotificationsDoctorThunk,
+  readNotificationsDoctorThunk
+} from '../../../redux/slices/notificationSlice'
+import { formatDate } from '../../../utils/date'
+import { StatusAppointment } from '../../../utils/statusAppointment'
+import {
+  DoctorContextType,
+  doctorContext
+} from '../context/ContextProviderDoctor'
+import SketonItem from './SketonItem'
 
 type Props = {}
 
@@ -40,6 +51,7 @@ const PAGINATION_LIMIT = 4
 
 export default function AppointmentDoctor({}: Props) {
   const dispatch: DispatchType = useDispatch()
+  const { stompDoctor } = useContext(doctorContext) as DoctorContextType
 
   const { appointmentPageable } = useSelector(
     (state: RootState) => state.appointments
@@ -49,6 +61,7 @@ export default function AppointmentDoctor({}: Props) {
   const [status, setStatus] = useState(`${StatusAppointment.Pending}`)
   const [page, setPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true)
+  const { currentUser } = useSelector((state: RootState) => state.auths)
 
   const getAllAppointmentDoctorPageable = async (
     pageIndex: number,
@@ -93,16 +106,46 @@ export default function AppointmentDoctor({}: Props) {
 
   const changeStatusAppointment = async (
     appointmentId: number,
-    appointmentStatus: number
+    appointmentStatus: number,
+    appointment: IAppointment
   ) => {
     await dispatch(
       changeStatusAppointmentThunk(appointmentId, appointmentStatus)
     )
+
+    await dispatch(readNotificationsDoctorThunk(appointment.id))
+
+    await changeStatusAppointmentSocket(appointment, appointmentStatus)
+  }
+
+  const changeStatusAppointmentSocket = (
+    appointment: IAppointment,
+    appointmentStatusChange: number
+  ) => {
+    if (stompDoctor) {
+      let notificationPatient = {
+        patientId: appointment.patient.id,
+        avatarDoctor: currentUser.profilePicture,
+        doctorName: currentUser.firstName + ' ' + currentUser.lastName,
+        startTime: appointment.timeSlot.startTime,
+        duration: appointment.timeSlot.duration,
+        status: appointmentStatusChange,
+        appointmentId: appointment.id,
+        isRead: false,
+        modifiedDate: new Date()
+      }
+      stompDoctor.send(
+        '/app/change-statusAppointment',
+        {},
+        JSON.stringify(notificationPatient)
+      )
+    }
   }
 
   const renderActionAppointmentByStatus = (
     checkStatus: number,
-    appointmentId: number
+    appointmentId: number,
+    appointment: IAppointment
   ) => {
     if (checkStatus === StatusAppointment.Pending) {
       return (
@@ -112,7 +155,11 @@ export default function AppointmentDoctor({}: Props) {
             className='btn accept'
             startIcon={<CheckOutlinedIcon />}
             onClick={() => {
-              changeStatusAppointment(appointmentId, StatusAppointment.Approved)
+              changeStatusAppointment(
+                appointmentId,
+                StatusAppointment.Approved,
+                appointment
+              )
               toast.success('Appointment Approved')
             }}
           >
@@ -123,7 +170,11 @@ export default function AppointmentDoctor({}: Props) {
             className='btn cancel'
             startIcon={<CloseOutlinedIcon />}
             onClick={() => {
-              changeStatusAppointment(appointmentId, StatusAppointment.Cancel)
+              changeStatusAppointment(
+                appointmentId,
+                StatusAppointment.Cancel,
+                appointment
+              )
               toast.success('Appointment Canceled')
             }}
           >
@@ -190,7 +241,7 @@ export default function AppointmentDoctor({}: Props) {
           </div>
 
           <div className='appointment__action'>
-            {renderActionAppointmentByStatus(item.status, item.id)}
+            {renderActionAppointmentByStatus(item.status, item.id, item)}
           </div>
         </div>
       )

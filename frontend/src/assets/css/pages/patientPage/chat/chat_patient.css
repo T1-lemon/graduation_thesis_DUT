@@ -1,0 +1,15 @@
+.container_chat-patient {
+  margin-top: 102px;
+  padding: 0px 50px;
+}
+
+.container_chat-patient .container {
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+}

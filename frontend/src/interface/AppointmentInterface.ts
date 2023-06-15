@@ -14,14 +14,15 @@ export interface AppointmentInforInterface {
   appointmentId: number
   patientId: number
   status: number
+  modifiedDate: Date
 }
 
 export interface IAppointment {
   id: number
   createdBy: null
   modifiedBy: null
-  createdDate: null
-  modidiedDate: null
+  createdDate: Date
+  modifiedDate: Date
   status: number
   patient: UserInformation
   timeSlot: ITimeSlot
@@ -31,4 +32,9 @@ export interface IAppointmentPageable {
   pageIndex: number
   totalPage: number
   listAppointmentResult: IAppointment[]
+}
+
+export interface ICheckAppointment {
+  statusCode: number
+  message: string
 }

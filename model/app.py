@@ -6,48 +6,92 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np 
 import json 
 import mysql.connector
+import csv
+import re
+import nltk
+import spacy
+import contractions
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+lemmatizer = WordNetLemmatizer()
+
+nlp = spacy.load('en_core_web_sm')
 
 # Load model
 model = load_model('model.h5')
-vocab_size = 1000
 embedding_dim = 64
-max_length = 140 
+max_length = 4 
 
 #load data 
 def load_data_func():
-    with open('sample_data/data.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
+    filename = "sample_data/metadata.tsv"
+    dictionary = []
+    with open(filename, "r", newline="", encoding="utf-8") as file:
+        for line in file:
+            vocab = line.strip()
+            dictionary.append(vocab)
 
-#sentences vs labels 
-def assign_sentences_labels(data): 
-    sentences = []
-    labels = []
+    tokenizer = Tokenizer()
+    tokenizer.fit_on_texts(dictionary)
+    return tokenizer
 
-    for item in data: 
-        sentences.append(item["text"])
-        labels.append(item["label"])
-    
-    labels = np.array(labels)
-    return [sentences, labels]
+#Pre processing
+def remove_special_characters(text):
+    text = re.sub(r"[^\w\s]", "", text)
+    return text
+
+
+def convert_to_lowercase(sentence):
+    sentence = sentence.lower().strip()
+    return sentence
+
+def expand_sentence(sentence):
+  sentence = contractions.fix(sentence)
+  return sentence
+
+def remove_stopwords(sentence):
+    stop_words = set(stopwords.words("english"))
+
+    tokens = sentence.split()
+    filtered_tokens = [word for word in tokens if word not in stop_words]
+    text = " ".join(filtered_tokens)
+    return text
+
+def lemmatize_sentence(sentence):
+    doc = nlp(sentence)
+    lemmatized_words = ' '.join([token.lemma_ if token.tag_ != 'NNS' else lemmatizer.lemmatize(token.text) for token in doc]) 
+    return lemmatized_words
+
+def pre_processing(sentence):
+  expanded_sentence = expand_sentence(sentence)
+  lemmatized_sentence = lemmatize_sentence(expanded_sentence)
+  lowercase_sentence = convert_to_lowercase(lemmatized_sentence)
+  removed_stopwords = remove_stopwords(lowercase_sentence)
+  removed_special_characters = remove_special_characters(removed_stopwords)
+  return removed_special_characters
 
 #Tokenizer 
 def tokenizer_func(text): 
-    data = load_data_func()
-    train_data = assign_sentences_labels(data)
-    train_sentences = train_data[0]
-
-    tokenizer = Tokenizer(num_words=vocab_size, oov_token="<OOV>")
-    tokenizer.fit_on_texts(train_sentences)
+    tokenizer = load_data_func()
     text_seq = tokenizer.texts_to_sequences([text])
     return text_seq
 
 def get_department_id(): 
+    # database = mysql.connector.connect(
+    #     host='mysql-springboot-container',
+    #     user='root',
+    #     password='12345678',
+    #     database='hospitalCareDB'
+    # )
     database = mysql.connector.connect(
-        host='mysql-springboot-container',
+        host='localhost',
         user='root',
         password='12345678',
-        database='hospitalCareDB'
+        database='hospital_care'
     )
     cursor = database.cursor()
     cursor.execute("SELECT id FROM departments")
@@ -74,7 +118,8 @@ def add():
 def predict():
     data = request.json
     searchText = data.get('searchText')
-    text_seq = tokenizer_func(searchText)
+    searchTextPre = pre_processing(searchText)
+    text_seq = tokenizer_func(searchTextPre)
     padded_test_seq = pad_sequences(text_seq, maxlen=max_length, truncating='post', padding='post')
     prediction = model.predict(padded_test_seq)
     
@@ -90,5 +135,5 @@ def predict():
 def test():
     return "success"
 #Start Backend 
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port='6868')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='6868')

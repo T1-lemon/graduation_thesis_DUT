@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import { ProgressListener } from '../../../components/Progress'
@@ -67,6 +67,7 @@ const registerInputFields: RegisterInputField[] = [
 
 const RegisterPage: React.FC = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const { role } = useAppSelector((state) => state.auths)
 
   const handleRegisterSubmit = (values: FormRegisterValues) => {
@@ -74,7 +75,9 @@ const RegisterPage: React.FC = () => {
       ProgressListener.emit('start')
       await dispatch(registerUser(dataRegister))
       ProgressListener.emit('stop')
+      navigate('/process_register')
     }
+
     const { confirmPassword, ...dataRegister } = values
     role === Role.Admin
       ? (dataRegister.role = Role.Doctor)

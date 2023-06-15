@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConversationRepository extends JpaRepository<ConversationEntity, Long> {
   List<ConversationEntity> getAllBySenderId(Long senderId);
+
+  ConversationEntity getBySenderIdAndReceiverId(Long senderId, Long receiverId);
 }

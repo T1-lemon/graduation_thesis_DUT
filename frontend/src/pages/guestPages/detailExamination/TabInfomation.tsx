@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab'
 import * as React from 'react'
 
 import { IMedicalExamination } from '../../../interface/MedicalExaminationInterfaces'
+import ReviewExamination from './ReviewExamination'
 
 type Props = {
   medical?: IMedicalExamination
@@ -36,6 +37,7 @@ export default function TabInfomation(props: Props) {
           >
             <Tab label='Overview' value='1' />
             <Tab label='Experience' value='2' />
+            <Tab label='Reviews' value='3' />
           </TabList>
         </Box>
         <TabPanel value='1'>
@@ -60,6 +62,11 @@ export default function TabInfomation(props: Props) {
                   return <li key={index}>{item}</li>
                 })}
             </ul>
+          </div>
+        </TabPanel>
+        <TabPanel value='3'>
+          <div className='tab__content--item'>
+            <ReviewExamination medical={medical} />
           </div>
         </TabPanel>
       </TabContext>

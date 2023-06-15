@@ -9,20 +9,12 @@ import {
 import { Form, Formik } from 'formik'
 
 import { UserProfileField } from '../../interface/FormikInterface'
-import { FormUserProfileValues } from '../../interface/UsersInterface'
-import {
-  FormLoginValues,
-  FormRegisterValues
-} from '../../interface/ValidateInterface'
 import { LoginInputField } from '../../pages/guestPages/authPage/LoginPage'
 import { RegisterInputField } from '../../pages/guestPages/authPage/RegisterPage'
 import FieldInputFormik from './FieldInputFormik'
 
 type Props = {
-  initialFormikValues:
-    | FormLoginValues
-    | FormRegisterValues
-    | FormUserProfileValues
+  initialFormikValues: any
   inputFields: LoginInputField[] | RegisterInputField[] | UserProfileField[]
   onValidationSchema: any
   onValidate?: any

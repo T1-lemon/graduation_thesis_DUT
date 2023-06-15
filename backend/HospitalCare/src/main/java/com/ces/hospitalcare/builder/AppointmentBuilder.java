@@ -28,6 +28,9 @@ public class AppointmentBuilder {
         .duration(timeSlotAppointment.getDuration())
         .examinationPrice(medicalExaminationDoctor.getExaminationPrice())
         .status(appointmentEntity.getStatus())
+        .firstNamePatient(patient.getFirstName())
+        .lastNamePatient(patient.getLastName())
+        .emailPatient(patient.getEmail())
         .build();
   }
 }

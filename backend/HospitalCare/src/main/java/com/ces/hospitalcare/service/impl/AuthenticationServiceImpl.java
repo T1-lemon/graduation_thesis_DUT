@@ -5,6 +5,7 @@ import com.ces.hospitalcare.entity.UserEntity;
 import com.ces.hospitalcare.http.exception.AlreadyExistException;
 import com.ces.hospitalcare.http.exception.LoginUserException;
 import com.ces.hospitalcare.http.exception.ResourceNotFoundException;
+import com.ces.hospitalcare.http.exception.VerifyTokenException;
 import com.ces.hospitalcare.http.request.AuthenticationRequest;
 import com.ces.hospitalcare.http.request.RegisterRequest;
 import com.ces.hospitalcare.http.response.RegisterResponse;
@@ -12,12 +13,16 @@ import com.ces.hospitalcare.http.response.UserResponse;
 import com.ces.hospitalcare.repository.UserRepository;
 import com.ces.hospitalcare.security.service.JwtService;
 import com.ces.hospitalcare.security.service.ValidTokenService;
+import com.ces.hospitalcare.security.service.VerifyTokenService;
 import com.ces.hospitalcare.service.IAuthenticationService;
+import com.ces.hospitalcare.service.IEmailService;
 import com.ces.hospitalcare.util.CookieHandler;
 import com.ces.hospitalcare.util.ExceptionMessage;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,17 +55,45 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
   @Autowired
   private CookieHandler cookieHandler;
 
-  public RegisterResponse register(RegisterRequest request) {
+  @Autowired
+  private VerifyTokenService verifyTokenService;
+
+  @Autowired
+  private IEmailService emailService;
+
+  public RegisterResponse register(RegisterRequest request)
+      throws MessagingException, UnsupportedEncodingException {
     if (userRepository.findByEmail(request.getEmail()).isEmpty() == false) {
       throw new AlreadyExistException("Email already exists");
     }
 
     UserEntity user = userBuilder.userEntityBuild(request,
         passwordEncoder.encode(request.getPassword()));
-    userRepository.save(user);
+    String verifyToken = jwtService.generateVerifyToken(user);
+    verifyTokenService.setVerifyToken(verifyToken );
+    verifyTokenService.setVerifyUserEntity(user);
+
+    String siteURL = "https://hospitalcaretech.online";
+    emailService.sendVerificationEmail(user, siteURL, verifyToken);
 
     return RegisterResponse.builder()
         .message("Register successfully")
+        .status(HttpStatus.CREATED.value())
+        .build();
+  }
+
+  public RegisterResponse verifyToken(String verifyToken) {
+    final String userEmail;
+    try {
+      userEmail = jwtService.extractUsername(verifyToken);
+    } catch (Exception e) {
+      throw new VerifyTokenException(ExceptionMessage.INVALID_VERIFY_TOKEN.getMessage());
+    }
+    UserEntity user = verifyTokenService.getVerifyUserEntity(userEmail);
+    userRepository.save(user);
+
+    return RegisterResponse.builder()
+        .message("Verify successfully")
         .status(HttpStatus.CREATED.value())
         .build();
   }

@@ -1,0 +1,59 @@
+.chat_input-contrainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 10px;
+  box-shadow: 0px 0px 4px #7bafa9;
+}
+
+.chat_input-contrainer .button-container .emoji {
+  position: relative;
+}
+
+.chat_input-contrainer .button-container .emoji svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.chat_input-contrainer .button-container .emoji svg:hover {
+  border-radius: 50%;
+  background-color: var(--primary-light-color);
+}
+.chat_input-contrainer .button-container .emoji .EmojiPickerReact {
+  position: absolute;
+  top: -456px;
+}
+
+.chat_input-contrainer .input-container {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.chat_input-contrainer .input-container > input {
+  width: 90%;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.chat_input-contrainer .input-container > input:focus {
+  outline: 1px solid #000;
+}
+
+.chat_input-contrainer .input-container > button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-button);
+}
+
+.chat_input-contrainer .input-container > button .icon_send {
+  font-size: 20px;
+  color: #fff;
+}

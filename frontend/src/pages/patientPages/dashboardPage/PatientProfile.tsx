@@ -19,6 +19,7 @@ import { userProfileFields } from '../../../utils/formik/formikData'
 import { NAME_REGEX, PHONE_REGEX_VN } from '../../../utils/regex'
 import {
   CHECK_ADDRESS_EMPTY,
+  CHECK_AGE_EMPTY,
   CHECK_FIRST_NAME_EMPTY,
   CHECK_LAST_NAME_EMPTY,
   CHECK_NAME_EMPTY,
@@ -30,14 +31,16 @@ import {
 const PatientProfile = () => {
   const dispatch = useAppDispatch()
   const { currentUser } = useAppSelector((state) => state.auths)
-  const { id, firstName, lastName, gender, address, phoneNumber } = currentUser
+  const { id, firstName, lastName, gender, address, phoneNumber, age } =
+    currentUser
 
   const initialUserProfileValues = {
     firstName: firstName ? firstName : '',
     lastName: lastName ? lastName : '',
     gender: convertGenderToString(gender),
     address: address ? address : '',
-    phoneNumber: phoneNumber ? phoneNumber : ''
+    phoneNumber: phoneNumber ? phoneNumber : '',
+    age: age ? age : null
   }
 
   const handleUpdateProfilesSubmit = (values: FormUserProfileValues) => {
@@ -63,7 +66,8 @@ const PatientProfile = () => {
       phoneNumber: Yup.string()
         .trim()
         .required(CHECK_PHONE_NUMBER_EMPTY)
-        .matches(PHONE_REGEX_VN, CHECK_PHONE_NUMBER_MATCH_REGEX)
+        .matches(PHONE_REGEX_VN, CHECK_PHONE_NUMBER_MATCH_REGEX),
+      age: Yup.number().required(CHECK_AGE_EMPTY)
     })
   }
 

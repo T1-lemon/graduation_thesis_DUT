@@ -82,12 +82,12 @@ public class UserServiceImpl implements IUserService {
       throws IOException {
     UserEntity user = userRepository.findById(userId)
         .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
-
+    System.out.println(userId);
     Map response = cloudinary.uploader().upload(multipartFile.getBytes(), ObjectUtils.asMap(
         "public_id",
         "profilePicture" + "/" + userId + "/" + multipartFile.getName()
     ));
-
+    System.out.println("upload success");
     String profilePictureUrl = (String) response.get("secure_url");
     user.setProfilePicture(profilePictureUrl);
     userRepository.save(user);

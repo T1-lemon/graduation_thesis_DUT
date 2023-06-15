@@ -58,6 +58,12 @@ public class JwtService {
     return buildToken(new HashMap<>(), userDetails, SecurityContact.REFRESH_EXPIRATION_TIME);
   }
 
+  public String generateVerifyToken(
+      UserDetails userDetails
+  ) {
+    return buildToken(new HashMap<>(), userDetails, SecurityContact.VERIFY_TOKEN_EXPIRATION_TIME);
+  }
+
   private String buildToken(
       Map<String, Object> extraClaims,
       UserDetails userDetails,

@@ -64,6 +64,11 @@
   margin-right: 5px;
 }
 
+.brief__information .btn_sendMessage {
+  margin-top: 20px;
+  padding: 7px 20px;
+}
+
 .container__schedule {
   background-color: #fff;
   border-radius: 10px;
@@ -174,4 +179,78 @@
   border-radius: 50%;
   left: 0px;
   top: 7px;
+}
+
+.tab__content--item .reviews_container {
+  overflow-y: auto;
+  max-height: 600px;
+  padding: 0px 30px;
+}
+
+.tab__content--item .reviews_container .review_item {
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1px solid var(--primary-color-border);
+}
+
+.tab__content--item .reviews_container .review_item .avatar_patient {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.tab__content--item .reviews_container .review_item .avatar_patient > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  margin-right: 120px;
+}
+
+.tab__content--item
+  .reviews_container
+  .review_item
+  .review_infor-container
+  .date_review {
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.tab__content--item
+  .reviews_container
+  .review_item
+  .review_infor-container
+  .comment_text {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.tab__content--item > .input_review {
+  background-color: #f8f9fa;
+  display: flex;
+  padding: 30px;
+}
+
+.tab__content--item > .input_review > img {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+.tab__content--item > .input_review form {
+  flex: 1;
+}
+
+.tab__content--item > .input_review form textarea {
+  width: 95%;
+  height: 100px;
+  padding: 12px;
+  font-size: 14px;
+  resize: none;
+}
+.tab__content--item > .input_review form .btn__comment {
+  padding: 9px 14px;
+  float: right;
+  margin-top: 10px;
 }

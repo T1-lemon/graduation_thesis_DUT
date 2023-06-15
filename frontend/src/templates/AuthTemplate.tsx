@@ -55,18 +55,6 @@ function AuthTemplate() {
       ) : (
         <></>
       )}
-      {message && checkResponseSuccess(status) ? (
-        <Box className='box__alert'>
-          <Alert severity='success'>{message}</Alert>
-          <ButtonCustomize
-            icon={<CloseIcon fontSize='small' />}
-            className='btn__close'
-            onClickBtn={handleCloseAlert}
-          />
-        </Box>
-      ) : (
-        <></>
-      )}
       <div className={`${!message ? 'auth__outlet' : 'auth__outlet--alert'}`}>
         <Outlet />
       </div>

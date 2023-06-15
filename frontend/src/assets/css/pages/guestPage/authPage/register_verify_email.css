@@ -1,0 +1,30 @@
+.verify__div--container {
+    text-align: center;
+    color: var(--color-title);
+    margin-top: 200px;
+}
+
+.verify__img--email {
+    width: 120px;
+    height: 110px;
+}
+
+.verify__p {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.verify__h1 {
+    margin-top: 15px;
+}
+
+.verify__link {
+    text-decoration: none;
+    color: var(--color-title);
+    font-size: 22px;
+    line-height: 50px;
+}
+
+.verify__link:hover {
+    text-decoration: underline;
+}

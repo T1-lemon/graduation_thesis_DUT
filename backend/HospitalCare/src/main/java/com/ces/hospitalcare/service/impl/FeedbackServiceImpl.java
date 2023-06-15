@@ -43,7 +43,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 
   @Override
   public List<FeedbackDTO> getAllFeedbackByExaminationId(Long examinationId) {
-    List<FeedbackEntity> listFeedbackEntity = feedbackRepository.getAllByMedicalExaminationId(
+    List<FeedbackEntity> listFeedbackEntity = feedbackRepository.getAllByMedicalExaminationIdOrderByCreatedDateDesc(
         examinationId);
 
     return createListFeedbackResponse(listFeedbackEntity);

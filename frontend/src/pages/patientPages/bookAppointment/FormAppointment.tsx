@@ -17,6 +17,7 @@ import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Client } from 'stompjs'
 import * as Yup from 'yup'
 
 import ButtonCustomize from '../../../components/ButtonCustomize'
@@ -54,10 +55,11 @@ type IPatientInformation = {
 }
 type Props = {
   timeSlotResponse?: ITimeSlotResponse
+  stompClient?: Client
 }
 
 export default function FormAppointment(props: Props) {
-  const { timeSlotResponse } = props
+  const { timeSlotResponse, stompClient } = props
   const { currentUser } = useAppSelector((state) => state.auths)
   const [checkSwitch, setCheckSwitch] = useState(false)
   const navigate = useNavigate()
@@ -92,9 +94,9 @@ export default function FormAppointment(props: Props) {
         updateProfile(inputData)
       }
 
+      bookAppointmentSocket()
       bookAppointmentApi()
       navigate('/user/appointments')
-      // navigate('/search-doctor')
     }
   })
 
@@ -105,8 +107,29 @@ export default function FormAppointment(props: Props) {
       timeSlotResponse?.doctorId as number,
       timeSlotResponse?.timeSlotDTO.id as number
     )
+    await dispatch(getAllMedicalExaminationTimeThunk())
     await dispatch(getListAppointment())
     toast.success('Your appointment has been booked successfully.')
+  }
+
+  const bookAppointmentSocket = () => {
+    if (stompClient) {
+      let appointment = {
+        patientId: currentUser.id,
+        doctorId: timeSlotResponse?.doctorId,
+        avatarPatient: currentUser.profilePicture,
+        startTime: timeSlotResponse?.timeSlotDTO.startTime,
+        duration: timeSlotResponse?.timeSlotDTO.duration,
+        patientName: currentUser.firstName + ' ' + currentUser.lastName,
+        isRead: false,
+        createdDate: new Date()
+      }
+      stompClient.send(
+        '/app/private-appointment',
+        {},
+        JSON.stringify(appointment)
+      )
+    }
   }
 
   const updateProfile = async (dataUserProfile: DataUserProfile) => {

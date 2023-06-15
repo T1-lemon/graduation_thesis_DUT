@@ -24,6 +24,7 @@ public class UserBuilder {
     userEntity.setGender(request.getGender());
     userEntity.setPhoneNumber(request.getPhoneNumber());
     userEntity.setAddress(request.getAddress());
+    userEntity.setAge(request.getAge());
     return userEntity;
   }
 

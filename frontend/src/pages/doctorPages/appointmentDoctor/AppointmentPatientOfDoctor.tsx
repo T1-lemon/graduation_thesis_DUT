@@ -24,7 +24,7 @@ export default function AppointmentPatientOfDoctor({}: Props) {
 
   useEffect(() => {
     getAllAppointmentPatientForDoctor()
-  }, [params.id])
+  }, [params.id, params.patientId])
 
   const arrInforPatient = [
     {
@@ -72,7 +72,10 @@ export default function AppointmentPatientOfDoctor({}: Props) {
       </div>
 
       <div className='table__appointment'>
-        <TableAppointment appointments={appointments} />
+        <TableAppointment
+          appointments={appointments}
+          getAllAppointmentPatientForDoctor={getAllAppointmentPatientForDoctor}
+        />
       </div>
     </div>
   )

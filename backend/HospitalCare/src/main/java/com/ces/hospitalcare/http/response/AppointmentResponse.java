@@ -29,4 +29,10 @@ public class AppointmentResponse {
   private String nameDepartment;
 
   private Integer status;
+
+  private String firstNamePatient;
+
+  private String lastNamePatient;
+
+  private String emailPatient;
 }

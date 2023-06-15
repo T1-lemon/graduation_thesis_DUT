@@ -78,3 +78,17 @@ export const getAllAppointmentPatientForDoctorService = async (
     return error
   }
 }
+
+export const checkAppointmentPatientAndExaminationService = async (
+  examinationId: number
+) => {
+  try {
+    const response = await requestAuthApi({
+      url: `/appointments?examinationId=${examinationId}`,
+      method: 'get'
+    })
+    return response.data
+  } catch (error) {
+    return error
+  }
+}

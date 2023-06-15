@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<FeedbackEntity, Long> {
-  List<FeedbackEntity> getAllByMedicalExaminationId(Long examinationId);
+  List<FeedbackEntity> getAllByMedicalExaminationIdOrderByCreatedDateDesc(Long examinationId);
 }

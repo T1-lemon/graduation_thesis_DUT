@@ -31,4 +31,10 @@ public class CustomExceptionHandler {
   public ErrorResponse handleDeleteDepartmentException(Exception ex) {
     return new ErrorResponse(ex.getMessage(), new Date(), HttpStatus.CONFLICT.value());
   }
+
+  @ExceptionHandler(VerifyTokenException.class)
+  @ResponseStatus(HttpStatus.CONFLICT)
+  public ErrorResponse handleVerifyTokenException(Exception ex) {
+    return new ErrorResponse(ex.getMessage(), new Date(), HttpStatus.CONFLICT.value());
+  }
 }

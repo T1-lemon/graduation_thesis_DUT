@@ -1,0 +1,67 @@
+.badge_notification > span {
+  background-color: #e74c3c;
+}
+
+.appointment_notification-container > a {
+  text-decoration: none;
+  color: #000;
+}
+
+.appointment_notification-container > p {
+  padding: 14px;
+}
+
+.appointment_notification-container .notification {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.appointment_notification-container .notification:hover {
+  background-color: var(--background-color);
+}
+
+.appointment_notification-container .notification .avatar_patient {
+  width: 46px;
+  height: 46px;
+  margin-right: 10px;
+}
+
+.appointment_notification-container .notification .avatar_patient > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.appointment_notification-container .notification .info_appointment {
+  font-size: 15px;
+}
+
+.appointment_notification-container .notification .info_appointment > p {
+  margin-bottom: 8px;
+}
+
+.appointment_notification-container
+  .notification
+  .info_appointment
+  .time_appointment
+  strong:first-child {
+  margin-right: 14px;
+}
+
+.appointment_notification-container
+  .notification
+  .info_appointment
+  .created_date {
+  margin-top: 9px;
+  color: var(--color-button-hover);
+  font-weight: 600;
+}
+
+.appointment_notification-container .notification .dot_read {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  margin-left: 14px;
+}

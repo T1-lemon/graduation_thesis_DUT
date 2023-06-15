@@ -1,0 +1,50 @@
+.container_conversation {
+  padding-top: 28px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+}
+
+.container_conversation > p {
+  font-size: 24px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+.container_conversation .contacts {
+}
+
+.container_conversation .contacts .contact {
+  display: flex;
+  align-items: center;
+  padding: 4px 25px;
+  cursor: pointer;
+}
+
+.container_conversation .contacts .contact:hover {
+  background-color: var(--primary-light-color);
+}
+
+.container_conversation .contacts .contact.selected {
+  background-color: var(--primary-light-color);
+}
+
+.container_conversation .contacts .contact .avatar {
+  width: 36px;
+  height: 36px;
+}
+
+.container_conversation .contacts .contact .avatar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.container_conversation .contacts .contact .username {
+  margin-left: 10px;
+  color: #5a636c;
+  font-size: 14px;
+}
+
+.container_conversation .contacts .contact.selected .username {
+  color: #fff;
+}

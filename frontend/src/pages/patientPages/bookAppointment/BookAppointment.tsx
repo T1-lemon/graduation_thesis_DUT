@@ -1,5 +1,4 @@
-import Grid from '@mui/material/Grid/Grid'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import '../../../assets/css/pages/patientPage/bookAppointment/book_appointment.css'
@@ -8,6 +7,10 @@ import {
   ITimeSlotResponse
 } from '../../../interface/TimeSlotInterfaces'
 import { getDetailTimeSlotService } from '../../../services/timeSlotService'
+import {
+  PatientContextType,
+  patientContext
+} from '../context/ContextProviderPatient'
 import BookingSummary from './BookingSummary'
 import FormAppointment from './FormAppointment'
 
@@ -15,6 +18,7 @@ type Props = {}
 
 export default function BookAppointment(props: Props) {
   const params = useParams()
+  const { stompPatient } = useContext(patientContext) as PatientContextType
 
   const [timeSlotResponse, setTimeSlotResponse] = useState<ITimeSlotResponse>()
 
@@ -32,7 +36,10 @@ export default function BookAppointment(props: Props) {
 
   return (
     <div className='book__appointment'>
-      <FormAppointment timeSlotResponse={timeSlotResponse} />
+      <FormAppointment
+        stompClient={stompPatient}
+        timeSlotResponse={timeSlotResponse}
+      />
 
       <BookingSummary timeSlot={timeSlotResponse?.timeSlotDTO} />
     </div>

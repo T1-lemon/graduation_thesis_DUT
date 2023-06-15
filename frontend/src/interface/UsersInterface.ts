@@ -5,6 +5,7 @@ export interface DataUserProfile {
   gender: boolean
   address?: string
   phoneNumber?: string
+  age?: number
 }
 
 export interface DataUserProfilePicture {
@@ -18,6 +19,7 @@ export interface FormUserProfileValues {
   gender: string
   address: string
   phoneNumber: string
+  age: number
 }
 
 export interface UserInformation {

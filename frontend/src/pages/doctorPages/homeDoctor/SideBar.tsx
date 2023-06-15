@@ -1,15 +1,19 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import { current } from '@reduxjs/toolkit'
-import * as React from 'react'
-import Avatar from 'react-avatar'
-import { useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { current } from '@reduxjs/toolkit';
+import * as React from 'react';
+import Avatar from 'react-avatar';
+import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import { RootState } from '../../../redux/configStore'
-import { useAppDispatch } from '../../../redux/hooks'
-import { logoutUser } from '../../../redux/thunk/authThunk'
+
+
+import { RootState } from '../../../redux/configStore';
+import { useAppDispatch } from '../../../redux/hooks';
+import { logoutUser } from '../../../redux/thunk/authThunk';
+
 
 type Props = {}
 
@@ -24,6 +28,11 @@ const arrSelectSideBar = [
     url: '/doctor/schedule-timing',
     name: 'Schedule Timing',
     icon: <AccessTimeIcon className='side__bar-icon' />
+  },
+  {
+    url: '/doctor/message',
+    name: 'Message',
+    icon: <ForumOutlinedIcon className='side__bar-icon' />
   }
 ]
 

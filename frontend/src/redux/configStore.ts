@@ -4,6 +4,7 @@ import adminReducer from './slices/adminSlice'
 import appointmentReducer from './slices/appointmentSlice'
 import authReducer from './slices/authSlice'
 import medicalExaminationReducer from './slices/medicalExaminationSlice'
+import notificationReducer from './slices/notificationSlice'
 import timeSlotsReducer from './slices/timeSlotSlice'
 
 export type DispatchType = typeof store.dispatch
@@ -16,6 +17,7 @@ export const store = configureStore({
     appointments: appointmentReducer,
     medicalExaminationReducer,
     timeSlotsReducer,
-    admin: adminReducer
+    admin: adminReducer,
+    notificationReducer
   }
 })

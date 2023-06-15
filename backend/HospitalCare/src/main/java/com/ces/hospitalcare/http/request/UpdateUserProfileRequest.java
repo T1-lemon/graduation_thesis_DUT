@@ -18,4 +18,6 @@ public class UpdateUserProfileRequest {
   private Boolean gender;
 
   private String address;
+
+  private Integer age;
 }

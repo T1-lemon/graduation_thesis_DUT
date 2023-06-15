@@ -4,6 +4,7 @@ import com.ces.hospitalcare.dto.UserDTO;
 import com.ces.hospitalcare.http.request.AppointmentRequest;
 import com.ces.hospitalcare.http.response.AppointmentPageableResponse;
 import com.ces.hospitalcare.http.response.AppointmentResponse;
+import com.ces.hospitalcare.http.response.CheckResponse;
 import com.ces.hospitalcare.http.response.UserResponse;
 import com.ces.hospitalcare.service.IAppointmentService;
 import com.ces.hospitalcare.service.IUserService;
@@ -107,5 +108,15 @@ public class AppointmentController {
     UserDTO patient = userResponse.getUser();
     appointmentRequest.setPatientId(patient.getId());
     return appointmentService.bookAppointmentByPatient(appointmentRequest);
+  }
+
+  @GetMapping("")
+  @PreAuthorize("hasAuthority('ROLE_PATIENT')")
+  public CheckResponse getListAppointmentByPatientAndExamination(
+      @RequestParam("examinationId") Long examinationId) {
+    UserResponse userResponse = userService.getCurrentUser();
+    UserDTO patient = userResponse.getUser();
+    return appointmentService.checkAppointmentByPatientAndExamination(patient.getId(),
+        examinationId);
   }
 }

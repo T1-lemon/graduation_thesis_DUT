@@ -63,3 +63,16 @@ export const registerService = async (
     return data
   }
 }
+
+export const verifyEmailTokenService = async (token: String): Promise<any> => {
+  try {
+    const response = await requestApi({
+      method: 'post',
+      url: `/auth/verify?token=${token}`
+    })
+    return response.data
+  } catch (error: any) {
+    const { data } = error.response
+    return data
+  }
+}

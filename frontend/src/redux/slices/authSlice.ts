@@ -46,6 +46,7 @@ export const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action: any) => {
         state.currentUser = action.payload
         state.role = action.payload.role
+        state.isAuth = true
         state.message = ''
       })
       .addCase(logoutUser.pending, (state) => {
@@ -56,7 +57,7 @@ export const authSlice = createSlice({
         state.loading = false
         state.currentUser = {}
         state.role = ''
-        state.isCheckInitialStatus = true
+        state.isCheckInitialStatus = false
       })
       .addCase(updateAuth.pending, (state) => {
         state.loading = true
@@ -64,10 +65,12 @@ export const authSlice = createSlice({
       .addCase(updateAuth.fulfilled, (state, action: any) => {
         state.currentUser = action.payload
         state.role = action.payload.role
+        state.isAuth = true
         state.message = ''
       })
       .addCase(registerUser.fulfilled, (state, action: any) => {
         state.message = action.payload.message
+        state.isAuth = false
         state.status = action.payload.status
       })
       .addCase(registerUser.rejected, (state, action: any) => {
@@ -88,7 +91,6 @@ export const authSlice = createSlice({
           action.type.startsWith('auth/') && action.type.endsWith('/fulfilled'),
         (state) => {
           state.loading = false
-          state.isAuth = true
           state.isCheckInitialStatus = false
         }
       )

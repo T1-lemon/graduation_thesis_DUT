@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import '../../../assets/css/pages/guestPage/homePage/home_page.css'
@@ -46,7 +47,8 @@ export default function HomePage() {
               <span>for you now !</span>
             </p>
             <p className='banner__intor--des'>
-              Discover the right doctor for you and your health needs - Find a Doctor now!
+              Discover the right doctor for you and your health needs - Find a
+              Doctor now!
             </p>
           </Box>
           <Box className='banner__intro--btn'>

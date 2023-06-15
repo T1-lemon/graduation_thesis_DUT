@@ -8,7 +8,7 @@ import HeaderBar from '../components/header/HeaderBar'
 function PatientDashboardTemplate() {
   return (
     <div>
-      <HeaderBar />
+      {/* <HeaderBar /> */}
       <div className='patient__dashboard--container'>
         <PatientSidebar />
         <Outlet />
